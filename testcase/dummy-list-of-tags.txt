@@ -1,0 +1,13 @@
+6
+2 fashion tech 
+0.39154781837433217
+2 politics fashion 
+0.7937469191077756
+1 tech 
+0.9834693923724023
+4 travels academics fashion tech 
+0.399428772501502
+2 politics tech 
+0.17933803265503745
+3 music fashion tech 
+0.21531353207489767

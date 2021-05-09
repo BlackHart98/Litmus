@@ -1,0 +1,40 @@
+39
+2 music academics 
+1 tech 
+3 academics fashion sport 
+1 sport 
+4 travels politics sport tech 
+2 travels music 
+1 sport 
+5 music academics fashion travels tech 
+2 travels fashion 
+2 travels academics 
+3 academics sport tech 
+4 travels music politics fashion 
+3 travels music academics 
+4 music academics sport tech 
+3 politics academics travels 
+1 fashion 
+2 academics tech 
+3 politics sport tech 
+1 tech 
+4 travels music academics tech 
+3 politics sport tech 
+2 travels academics 
+4 politics fashion sport tech 
+3 politics tech travels 
+4 politics academics tech travels 
+4 travels music academics tech 
+5 politics music sport academics travels 
+6 politics music sport academics fashion tech 
+2 fashion tech 
+4 music academics sport tech 
+2 travels music 
+2 politics fashion 
+2 academics fashion 
+4 music academics sport tech 
+3 travels music tech 
+4 travels academics sport tech 
+2 politics sport 
+5 politics sport fashion travels tech 
+3 politics music travels 
