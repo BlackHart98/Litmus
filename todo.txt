@@ -1,0 +1,5 @@
+[] Decouple the individual modules
+[] Error management and control
+[] Document the entire project
+[] Package Litmus
+[] Upload Litmus to pypi

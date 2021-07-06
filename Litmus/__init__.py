@@ -13,8 +13,19 @@ class Litmus:
         self.litmus_vectorizer_obj.createTagSet()
         self.litmus_vectorizer_obj.vectorizeAssociatedData()
 
+    # @classmethod
+    # def vectorizeData(data):
+    #     self.litmus_vectorizer_obj.createTagSet(data)
+    #     self.litmus_vectorizer_obj.vectorizeData(data)
+
+
     def generateAllVector(self):
         self.litmus_vectorizer_obj.vectorizeAllData()
+
+    # @classmethod
+    # def generateAllVector(data):
+    #     self.litmus_vectorizer_obj.vectorizeData(data)
+
 
     def generateUserTaste(self):
         number_of_content = self.litmus_vectorizer_obj.getNumberOfContent()
