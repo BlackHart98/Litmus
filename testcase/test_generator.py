@@ -14,11 +14,11 @@ if __name__ == "__main__":
             tag = choice(keywords)
             temp.add(tag)
 
-        file_handle.write(str(len(temp)) + " ")
+        file_handle.write(str(i) + " " + str(len(temp)) + " ")
         for tag in temp:
             file_handle.write(tag + " ")
         rand = uniform(0, 1)
-        file_handle.write("\n" + str(rand) + "\n")
+        file_handle.write("\n" +  str(rand) + "\n")
     file_handle.close()
 
     file_handle = open("dummy-list-of-tags-all.txt", "w+")
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         for j in range(number_of_tags):
             tag = choice(keywords)
             temp.add(tag)
-        file_handle.write(str(len(temp)) + " ")
+        file_handle.write(str(i) + " " +str(len(temp)) + " ")
 
         for tag in temp:
             file_handle.write(tag + " ")

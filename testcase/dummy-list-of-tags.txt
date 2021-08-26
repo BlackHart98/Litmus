@@ -1,13 +1,11 @@
-6
-2 fashion tech 
-0.39154781837433217
-2 politics fashion 
-0.7937469191077756
-1 tech 
-0.9834693923724023
-4 travels academics fashion tech 
-0.399428772501502
-2 politics tech 
-0.17933803265503745
-3 music fashion tech 
-0.21531353207489767
+5
+0 4 music politics travels sport 
+0.1384481985327225
+1 4 politics tech fashion sport 
+0.8692240297847541
+2 1 sport 
+0.11215486616518433
+3 4 music politics travels tech 
+0.1201112406990753
+4 4 music politics fashion sport 
+0.5957526792369777

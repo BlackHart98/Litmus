@@ -1,4 +1,7 @@
-[] Decouple the individual modules
+This is the list of things that has to be added to this project. Uncompleted
+task are prefixed with [], while completed tasks with [x]:
+
+[] make corrections to findContentBasedOnTaste function in Core module
 [] Error management and control
 [] Document the entire project
 [] Package Litmus

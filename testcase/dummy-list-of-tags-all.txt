@@ -1,40 +1,42 @@
-39
-2 music academics 
-1 tech 
-3 academics fashion sport 
-1 sport 
-4 travels politics sport tech 
-2 travels music 
-1 sport 
-5 music academics fashion travels tech 
-2 travels fashion 
-2 travels academics 
-3 academics sport tech 
-4 travels music politics fashion 
-3 travels music academics 
-4 music academics sport tech 
-3 politics academics travels 
-1 fashion 
-2 academics tech 
-3 politics sport tech 
-1 tech 
-4 travels music academics tech 
-3 politics sport tech 
-2 travels academics 
-4 politics fashion sport tech 
-3 politics tech travels 
-4 politics academics tech travels 
-4 travels music academics tech 
-5 politics music sport academics travels 
-6 politics music sport academics fashion tech 
-2 fashion tech 
-4 music academics sport tech 
-2 travels music 
-2 politics fashion 
-2 academics fashion 
-4 music academics sport tech 
-3 travels music tech 
-4 travels academics sport tech 
-2 politics sport 
-5 politics sport fashion travels tech 
-3 politics music travels 
+41
+0 1 academics 
+1 5 sport tech music academics travels 
+2 2 fashion sport 
+3 2 academics sport 
+4 3 music politics tech 
+5 4 music politics fashion tech 
+6 2 travels tech 
+7 1 travels 
+8 4 academics politics travels tech 
+9 3 academics politics sport 
+10 4 music academics politics travels 
+11 4 music tech fashion sport 
+12 4 sport politics fashion tech 
+13 4 music academics politics travels 
+14 5 fashion tech politics academics travels 
+15 3 music fashion tech 
+16 6 fashion tech politics music academics travels 
+17 4 music academics politics travels 
+18 1 music 
+19 2 academics travels 
+20 2 music politics 
+21 4 academics tech fashion sport 
+22 5 sport tech politics academics travels 
+23 4 music academics travels tech 
+24 4 academics politics travels tech 
+25 3 music fashion travels 
+26 2 academics fashion 
+27 1 fashion 
+28 1 academics 
+29 4 music fashion politics travels 
+30 5 sport tech politics music academics 
+31 2 politics sport 
+32 4 music academics politics travels 
+33 1 sport 
+34 5 fashion sport music academics travels 
+35 3 politics travels tech 
+36 5 fashion tech sport politics music 
+37 1 tech 
+38 1 music 
+39 3 academics politics fashion 
+40 3 music academics tech 

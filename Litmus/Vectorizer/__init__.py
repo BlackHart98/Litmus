@@ -1,90 +1,95 @@
 # litmus vectorizer takes in list of words and generate vectors
 
 class LitmusVectorizer:
-    tagSet = set()
-    data = []
-    all_data = []
-    all_data_vector = []
-
-    associated_data_vector = []
+    tag_set = set()
+    current_data = []
+    data_pool = []
+    data_pool_vector = []
+    current_data_vector = []
     fitness = []
 
 
     def createTagSet(self):
         # collapse data into a linear array
         collapsed_data = []
-        for item in self.data[0]:
+        for item in self.current_data[0]:
             collapsed_data.append(item)
 
-        for i in range(1,len(self.data)):
-            for item in self.data[i]:
+        for i in range(1,len(self.current_data)):
+            for item in self.current_data[i]:
                 collapsed_data.append(item)
 
         for i in range(len(collapsed_data)):
-            self.tagSet.add(collapsed_data[i])
+            self.tag_set.add(collapsed_data[i])
 
-    def vectorizeAssociatedData(self):
+
+    def vectorizeCurrentData(self):
         # vectorize tags for associated tag set
-        for i in range(len(self.data)):
+        current_data_vector = []
+        for i in range(len(self.current_data)):
             temp = []
-            for tag in self.tagSet:
-                if tag in self.data[i]:
+            for tag in self.tag_set:
+                if tag in self.current_data[i]:
                     temp.append(1)
                 else:
                     temp.append(0)
-            self.associated_data_vector.append(temp)
+            current_data_vector.append(temp)
+        self.current_data_vector = current_data_vector
 
 
-    def vectorizeAllData(self):
+    def vectorizeDataPool(self):
         # vectorize tags  for all tag set
-        for i in range(len(self.all_data)):
+        data_pool_vector = []
+        for i in range(len(self.data_pool)):
             temp = []
-            for tag in self.tagSet:
-                if tag in self.all_data[i]:
+            for tag in self.tag_set:
+                if tag in self.data_pool[i]:
                     temp.append(1)
                 else:
                     temp.append(0)
-            self.all_data_vector.append((i,temp))
+            data_pool_vector.append((i,temp))
+        self.data_pool_vector = data_pool_vector
 
 
-    def setFitness(self, fitness):
-        self.fitness = fitness
-
-    def setData(self, data):
-        self.data = data
-
-    def setAllData(self, data):
-        self.all_data = data
+    def setInterestScore(self, interest_score_list):
+        self.interest_score_list = interest_score_list
 
 
-    def getData(self):
-        return self.data
+    def setCurrentData(self, current_data):
+        self.current_data = current_data
 
-    def getAllData(self):
-        return self.all_data
 
-    def getFitness(self):
-        return self.fitness
+    def setDataPool(self, data_pool):
+        self.data_pool = data_pool
+
+
+    def getCurrentData(self):
+        return self.current_data
+
+
+    def getDataPool(self):
+        return self.data_pool
+
+
+    def getInterestScore(self):
+        return self.interest_score_list
+
 
     def getTagSet(self):
-        return self.tagSet
+        return self.tag_set
 
-    def getVectorizedData(self):
-        return self.associated_data_vector
 
-    def getAllDataVector(self):
-        return self.all_data_vector
+    def getVectorizedCurrentData(self):
+        return self.current_data_vector
+
+
+    def getVectorizedDataPool(self):
+        return self.data_pool_vector
+
 
     def getVectorSize(self):
-        return len(self.tagSet)
+        return len(self.tag_set)
 
-    def devectorize(self, vector):
-        tag_dict = {}
-        i = 0
-        for  item in self.tagSet:
-            tag_dict[item] = vector[i]
-            i += 1
-        return tag_dict
 
     def getNumberOfContent(self):
-        return len(self.data)
+        return len(self.current_data)

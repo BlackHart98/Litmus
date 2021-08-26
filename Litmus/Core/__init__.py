@@ -1,11 +1,8 @@
 # this function is correct but can be improved on #
 from Litmus.Genetics import LitmusGenetics
+import Litmus.Functions as lf
+import numpy as np
 
-def euclidDistance(vector_1, vector_2):
-    total = 0
-    for i in range(len(vector_1)):
-        total += (vector_1[i] - vector_2[i])**2
-    return total**.5
 
 class LitmusCore:
  # ======================================================================================== #
@@ -14,7 +11,6 @@ class LitmusCore:
  # the current user taste vector u, the list of content associated to the users taste v[i]  #
  # the set of vectors C that represents the all the contents                                #
  # ======================================================================================== #
-
      number_of_content = 0
      vector_size = 0
      user_taste_vector = []
@@ -29,7 +25,7 @@ class LitmusCore:
 # a similarity function that finds contents that are similar to user taste function         #
 # a taste generation function to generate the user taste                                    #
 # ========================================================================================= #
-     def initialize(self):
+     def initialize(self, mutation_rate):
         temp = []
         for i in range(self.vector_size):
             total = 0.0
@@ -38,7 +34,8 @@ class LitmusCore:
             total /= self.number_of_content
             temp.append(total)
         self.user_taste_vector = temp
-        self.litmus_genetics_obj.initialize(self.vector_size, self.number_of_content, .0, (0, 1))
+        self.litmus_genetics_obj.initialize(
+        self.vector_size, self.number_of_content, mutation_rate, (0, 1))
 
 
      # def findContentBasedOnTaste(self):
@@ -55,13 +52,27 @@ class LitmusCore:
      def findContentBasedOnTaste(self):
         content_closeness_map = []
         for i in range(len(self.all_content)):
-            closeness = euclidDistance(self.user_taste_vector,self.all_content[i][1])
+            user_taste_vector = np.array(self.user_taste_vector,float)
+            data = np.array(self.all_content[i][1],float)
+            closeness = lf.euclidDistance(user_taste_vector,data)
             content_closeness_map.append((closeness, i))
         sorted_map = sorted(content_closeness_map)
         temp = []
         for i in range(self.number_of_content):
             temp.append(self.all_content[sorted_map[i][1]])
         self.associated_content = temp
+
+    # def findContentBasedOnTaste(self,number_of_content):
+    #     content_closeness_map = []
+    #     for i in range(len(self.all_content)):
+    #         closeness = lf.euclidDistance(self.user_taste_vector,self.all_content[i][1])
+    #         content_closeness_map.append((closeness, i))
+    #     if number_of_content > self.number_of_content :
+    #         print("Error")
+    #     else:
+    #         for i in range(number_of_content):
+    #             temp.append(self.all_content[sorted_map[i][1]])
+    #         self.associated_content = temp
 
 
      def generateUserTaste(self):
@@ -76,11 +87,6 @@ class LitmusCore:
             temp.append(total)
         self.user_taste_vector = temp
 
-
-     def runEpoch(self):
-        # self.generatePsuedoContent()
-        self.generateUserTaste()
-        self.findContentBasedOnTaste()
 
      def generatePsuedoContent(self):
         self.pseudo_content = self.litmus_genetics_obj.findPseudoContent(self.fitness, self.associated_content)
@@ -108,11 +114,12 @@ class LitmusCore:
      def getAssociatedVector(self):
          return self.associated_content
 
+
      def getAllVector(self):
          return self.all_content
 
 
-     def getFitness(self):
+     def getInterestScore(self):
          return self.fitness
 
      def setVectorSize(self, vector_size):
@@ -124,11 +131,11 @@ class LitmusCore:
      def setUserTaste(self, user_taste_vector):
          self.user_taste_vector = user_taste_vector
 
-     def setAssociatedVector(self, associated_content):
+     def setCurrentDataVector(self, associated_content):
          self.associated_content = associated_content
 
      def setAllVector(self, all_content):
          self.all_content = all_content
 
-     def setFitness(self, fitness):
+     def setInterestScore(self, fitness):
          self.fitness = fitness

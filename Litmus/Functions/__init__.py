@@ -1,4 +1,5 @@
 import math
+import numpy as np
 # =========================================================================== #
 # This class of distance function is for computing distance between two       #
 # vectors with equal length                                                   #
@@ -6,7 +7,7 @@ import math
 def euclidDistance(vector_1, vector_2):
     result = 0.0
     nn = len(vector_1)
-    for i in range(len(nn)):
+    for i in range(nn):
         result += (vector_1[i] - vector_2[i])**2
     return math.sqrt(result)
 
@@ -14,7 +15,7 @@ def euclidDistance(vector_1, vector_2):
 def manhattanDistance(vector_1, vector_2):
     result = 0.0
     nn = len(vector_1)
-    for i in range(len(nn)):
+    for i in range(nn):
         result += (vector_1[i] - vector_2[i])
     return math.sqrt(result)
 
@@ -30,3 +31,17 @@ def cosineSimilarity(vector_1, vector_2):
     norm_1 = math.sqrt(norm_1)
     norm_2 = math.sqrt(norm_2)
     return dotproduct/(norm_1*norm_2)
+
+
+
+
+
+def vectorDistanceLambda(func_name, vector_1, vector_2):
+    if func_name == "euclidDistance":
+        return euclidDistance(vector_1,vector_2)
+    elif func_name == "manhattanDistance":
+        return manhattanDistance(vector_1,vector_2)
+    elif func_name == "cosineSimilarity":
+        return cosineSimilarity(vector_1,vector_2)
+    else:
+        return 0.0

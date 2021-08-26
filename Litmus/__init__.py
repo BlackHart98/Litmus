@@ -1,88 +1,120 @@
-# Litmus is a python class that utilizes genetic algorithm to detect user taste #
+# ============================================================================ #
+# Litmus is a python class for generating user specific content based off      #
+# user taste                                                                   #
+# ============================================================================ #
 from Litmus.Vectorizer import LitmusVectorizer
 from Litmus.Core import LitmusCore
 
+
 class Litmus:
-
-
     litmus_vectorizer_obj = LitmusVectorizer()
     litmus_core_obj = LitmusCore()
     all_data_vector = []
+    data = {}
+    data_pool_index = {}
+    current_data_index = {}
 
-    def vectorizeData(self):
+    def getIndices(self):
+        print("data_pool_index : {}\ncurrent_data_index : {}\n"
+        .format(self.data_pool_index,
+        self.current_data_index))
+# =========================================================================== #
+# vectorize data : create a set of tags which are used to generate a set of   #
+# vectors for associated data                                                 #
+# =========================================================================== #
+    def preprocessData(self):
         self.litmus_vectorizer_obj.createTagSet()
-        self.litmus_vectorizer_obj.vectorizeAssociatedData()
-
-    # @classmethod
-    # def vectorizeData(data):
-    #     self.litmus_vectorizer_obj.createTagSet(data)
-    #     self.litmus_vectorizer_obj.vectorizeData(data)
+        self.litmus_vectorizer_obj.vectorizeCurrentData()
+        self.litmus_vectorizer_obj.vectorizeDataPool()
 
 
-    def generateAllVector(self):
-        self.litmus_vectorizer_obj.vectorizeAllData()
-
-    # @classmethod
-    # def generateAllVector(data):
-    #     self.litmus_vectorizer_obj.vectorizeData(data)
-
-
-    def generateUserTaste(self):
+# =========================================================================== #
+# Generate user taste vector                                                  #
+# =========================================================================== #
+    def generateUserTaste(self,mutation_rate):
         number_of_content = self.litmus_vectorizer_obj.getNumberOfContent()
         vector_size = self.litmus_vectorizer_obj.getVectorSize()
-        associated_vector = self.getVectorizedData()
-        fitness = self.litmus_vectorizer_obj.getFitness()
-
-        # print(associated_vector)
+        associated_vector = (self.getPreprocessedData()
+        ["vectorized current data"])
+        interest_score_list = self.litmus_vectorizer_obj.getInterestScore()
         self.litmus_core_obj.setNumberOfContent(number_of_content)
         self.litmus_core_obj.setVectorSize(vector_size)
-        self.litmus_core_obj.setAssociatedVector(associated_vector)
-        self.litmus_core_obj.setFitness(fitness)
-
-        self.litmus_core_obj.initialize()
+        self.litmus_core_obj.setCurrentDataVector(associated_vector)
+        self.litmus_core_obj.setInterestScore(interest_score_list)
+        self.litmus_core_obj.initialize(mutation_rate)
         self.litmus_core_obj.generateUserTaste()
 
-# generates content with user taste
+
+# =========================================================================== #
+# Generate content with user taste                                            #
+# =========================================================================== #
     def generateUserContent(self):
-        all_vector =  self.litmus_vectorizer_obj.getAllDataVector()
-        # print(all_vector)
+        all_vector =  self.litmus_vectorizer_obj.getVectorizedDataPool()
         self.litmus_core_obj.setAllVector(all_vector)
         self.litmus_core_obj.findContentBasedOnTaste()
 
 
-    def setData(self, data):
-        self.litmus_vectorizer_obj.setData(data)
+    def setData(self, current_data, data_pool, interest_score_list):
+        temp_current_data = []
+        temp_interest_score_list = []
+        temp_data_pool = []
+        for i in range(len(current_data)):
+            self.current_data_index[i] = current_data[i][0]
+            temp_current_data.append(current_data[i][1])
 
-    def setFitness(self, fitness):
-        self.litmus_vectorizer_obj.setFitness(fitness)
+        for i in range(len(interest_score_list)):
+            # self.data_pool_index[i] = interest_score_list[i][0]
+            temp_interest_score_list.append(
+            interest_score_list[i][1]
+            )
 
-    def setAllData(self, data):
-        self.litmus_vectorizer_obj.setAllData(data)
+        for i in range(len(data_pool)):
+            self.data_pool_index[i] = data_pool[i][0]
+            temp_data_pool.append(data_pool[i][1])
+
+        self.litmus_vectorizer_obj.setCurrentData(temp_current_data)
+        self.litmus_vectorizer_obj.setInterestScore(
+        temp_interest_score_list)
+        self.litmus_vectorizer_obj.setDataPool(temp_data_pool)
+        self.data = (
+        {"current data" : self.litmus_vectorizer_obj.getCurrentData(),
+        "data pool" : self.litmus_vectorizer_obj.getDataPool(),
+        "interest score list" : self.litmus_vectorizer_obj.getInterestScore()}
+        )
+
 
     def getData(self):
-        return self.litmus_vectorizer_obj.getData()
+        return self.data
 
-    def getAllData(self):
-        return self.litmus_vectorizer_obj.getAllData()
 
-    def getFitness(self):
-        return self.litmus_vectorizer_obj.getFitness()
-
-    def getTagSet(self):
-        return self.litmus_vectorizer_obj.getTagSet()
-
-    def getVectorizedData(self):
-        return self.litmus_vectorizer_obj.getVectorizedData()
-
-    def getAllDataVector(self):
-        return self.litmus_vectorizer_obj.getAllDataVector()
+    def getPreprocessedData(self):
+        return ({"tag set" : self.litmus_vectorizer_obj.getTagSet(),
+        "vectorized current data" : self.litmus_vectorizer_obj.getVectorizedCurrentData(),
+        "vectorized data pool" : self.litmus_vectorizer_obj.getVectorizedDataPool()}
+        )
 
 
     def getUserTaste(self):
-        return self.litmus_core_obj.getUserTaste()
+        return  ({"user taste" : self.litmus_core_obj.getUserTaste()})
+
 
     def getAssociatedVector(self):
-        return self.litmus_core_obj.getAssociatedVector()
+        return ({"related data" : self.litmus_core_obj.getAssociatedVector()})
 
-    def devectorizeUserTaste(self):
-        return self.litmus_vectorizer_obj.devectorize(self.getUserTaste())
+
+    def getNewContent(self):
+        result = []
+        associated_vector = self.litmus_core_obj.getAssociatedVector()
+        for item in associated_vector:
+            result.append(self.data_pool_index[item[0]])
+        return ({"new content" : result})
+
+
+    def recommendContent(self,current_data,
+    data_pool,interest_score_list,mutation_rate):
+        self.setData(current_data,data_pool,interest_score_list)
+        self.preprocessData()
+        # print(self.getPreprocessedData())
+        self.generateUserTaste(mutation_rate)
+        self.generateUserContent()
+        return self.getNewContent()["new content"]
