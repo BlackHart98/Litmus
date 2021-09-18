@@ -1,11 +1,91 @@
-5
-0 4 music politics travels sport 
-0.1384481985327225
-1 4 politics tech fashion sport 
-0.8692240297847541
-2 1 sport 
-0.11215486616518433
-3 4 music politics travels tech 
-0.1201112406990753
-4 4 music politics fashion sport 
-0.5957526792369777
+45
+0 8 business science fashion tourism music tech games academics 
+0.4144264632202459
+1 4 games sport fashion politics 
+0.35505075520044216
+2 2 games health 
+0.08157831319539499
+3 4 games sport fashion tech 
+0.15266396969325857
+4 8 business science fashion health tourism travels games academics 
+0.01126230834813946
+5 5 business health travels tech academics 
+0.5422178612761991
+6 4 games science fashion tourism 
+0.6670621064239735
+7 4 travels sport fashion politics 
+0.5755106908125329
+8 3 travels sport music 
+0.9564598915955799
+9 6 academics science politics tech games tourism 
+0.13933358002670349
+10 6 politics travels music tech games tourism 
+0.10765425713099486
+11 3 games health tourism 
+0.8403743577725162
+12 7 sport fashion politics travels music tech tourism 
+0.2558144237394554
+13 9 academics sport business science fashion politics music tech tourism 
+0.1758740014468776
+14 6 science health politics travels tech games 
+0.3404347369770385
+15 6 sport business health politics tech games 
+0.26485432764819206
+16 6 business science fashion travels games academics 
+0.7457689077132543
+17 8 sport business health travels music tech games tourism 
+0.2430060203678014
+18 8 sport business science fashion travels tech games tourism 
+0.3194586247856962
+19 9 business fashion health politics tourism travels music games academics 
+0.20110715346182895
+20 9 sport business science politics tourism travels music games academics 
+0.419922230031635
+21 5 sport science music games tourism 
+0.6157799119980373
+22 6 business science fashion tech games tourism 
+0.185374262165807
+23 4 business travels fashion tech 
+0.38563493602202326
+24 5 business science fashion travels music 
+0.9597258063721004
+25 3 sport music academics 
+0.41009225448204245
+26 7 sport science fashion health tourism tech academics 
+0.3798140797210955
+27 4 business science sport music 
+0.2394150292938343
+28 6 sport science politics travels music tourism 
+0.6133976823903259
+29 10 sport business science fashion health travels music tech games tourism 
+0.5457519885750342
+30 7 science health politics music tech games tourism 
+0.5124661442651773
+31 2 health politics 
+0.09024460033146386
+32 9 academics sport business fashion politics music tech games tourism 
+0.3115733279979547
+33 7 sport business science politics music tech academics 
+0.9541751185980814
+34 4 games travels sport academics 
+0.935582142997065
+35 3 business music tourism 
+0.41752896728729905
+36 5 sport health travels tech tourism 
+0.8968458258171296
+37 2 music politics 
+0.519448865513016
+38 7 sport fashion health travels tech games tourism 
+0.7384714790976257
+39 1 games 
+0.5065654175008458
+40 6 business science fashion health tech tourism 
+0.022559015566886553
+41 8 sport business health politics travels music games tourism 
+0.568883837587313
+42 2 fashion politics 
+0.2932556727578307
+43 4 games travels fashion health 
+0.1560079467159301
+44 6 sport science health politics travels academics 
+0.40492557550598585

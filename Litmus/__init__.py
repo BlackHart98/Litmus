@@ -4,6 +4,7 @@
 # ============================================================================ #
 from Litmus.Vectorizer import LitmusVectorizer
 from Litmus.Core import LitmusCore
+from Litmus.Utils import error, warning
 
 
 class Litmus:
@@ -13,6 +14,7 @@ class Litmus:
     data = {}
     data_pool_index = {}
     current_data_index = {}
+    system_status = {}
 
     def getIndices(self):
         print("data_pool_index : {}\ncurrent_data_index : {}\n"
@@ -48,10 +50,10 @@ class Litmus:
 # =========================================================================== #
 # Generate content with user taste                                            #
 # =========================================================================== #
-    def generateUserContent(self):
+    def generateUserContent(self,related_content_size):
         all_vector =  self.litmus_vectorizer_obj.getVectorizedDataPool()
         self.litmus_core_obj.setAllVector(all_vector)
-        self.litmus_core_obj.findContentBasedOnTaste()
+        self.litmus_core_obj.findContentBasedOnTaste(related_content_size)
 
 
     def setData(self, current_data, data_pool, interest_score_list):
@@ -111,10 +113,29 @@ class Litmus:
 
 
     def recommendContent(self,current_data,
-    data_pool,interest_score_list,mutation_rate):
+    data_pool,interest_score_list,related_content_size,mutation_rate):
+        if related_content_size > len(data_pool):
+            self.system_status = {"status" : "failed","error" : error["E0001"]}
+            return self.system_status
+        self.system_status = {"status" : "success"}
         self.setData(current_data,data_pool,interest_score_list)
         self.preprocessData()
         # print(self.getPreprocessedData())
         self.generateUserTaste(mutation_rate)
-        self.generateUserContent()
-        return self.getNewContent()["new content"]
+        self.generateUserContent(related_content_size)
+        return {"status" : "success" ,"new content" : self.getNewContent()["new content"]}
+
+    def summary(self):
+        if self.system_status["status"] == "failed":
+            print(system_status[error])
+        else:
+            result = self.getNewContent()["new content"]
+            if len(result) > 0:
+                print("=====================================================")
+                print("+          User Related Content                     +")
+                print("-----------------------------------------------------")
+                print("+    S/N                 +           ID             +")
+                print("-----------------------------------------------------")
+                for i in range(len(result)):
+                    print(f"*   {i+1}                           {result[i]}")
+                print("=====================================================")

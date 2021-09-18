@@ -49,7 +49,7 @@ class LitmusCore:
      #        temp.append(self.all_content[sorted_map[i][1]])
      #    self.associated_content = temp
 
-     def findContentBasedOnTaste(self):
+     def findContentBasedOnTaste(self, related_content_size):
         content_closeness_map = []
         for i in range(len(self.all_content)):
             user_taste_vector = np.array(self.user_taste_vector,float)
@@ -58,7 +58,7 @@ class LitmusCore:
             content_closeness_map.append((closeness, i))
         sorted_map = sorted(content_closeness_map)
         temp = []
-        for i in range(self.number_of_content):
+        for i in range(related_content_size):
             temp.append(self.all_content[sorted_map[i][1]])
         self.associated_content = temp
 

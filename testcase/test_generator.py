@@ -2,9 +2,9 @@ from random import *
 
 if __name__ == "__main__":
 
-    keywords = ["academics", "sport", "tech", "fashion", "travels", "politics", "music"]
+    keywords = ["academics", "sport", "tech", "fashion", "travels", "politics", "music","tourism","health","science", "games", "business"]
     file_handle = open("dummy-list-of-tags.txt", "w+")
-    content_size = randint(5, 10)
+    content_size = randint(10, 50)
     file_handle.write(str(content_size) + "\n")
     for i in range(content_size):
         number_of_tags = randint(1, len(keywords))
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     file_handle.close()
 
     file_handle = open("dummy-list-of-tags-all.txt", "w+")
-    all_content_size = randint(10, 50)
+    all_content_size = randint(1000, 10000)
     file_handle.write(str(all_content_size)+"\n")
     for i in range(all_content_size):
         number_of_tags = randint(1, len(keywords))
